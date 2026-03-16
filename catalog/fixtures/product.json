@@ -1,0 +1,54 @@
+[
+{
+    "model": "catalog.product",
+    "pk": 1,
+    "fields": {
+        "name": "Яблоко",
+        "description": "Свежие красные яблоки",
+        "image": "",
+        "category": 1,
+        "purchase_price": "120.50",
+        "created_at": "2026-03-16T12:00:00Z",
+        "updated_at": "2026-03-16T12:00:00Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 2,
+    "fields": {
+        "name": "Банан",
+        "description": "Спелые желтые бананы",
+        "image": "",
+        "category": 1,
+        "purchase_price": "80.00",
+        "created_at": "2026-03-16T12:00:00Z",
+        "updated_at": "2026-03-16T12:00:00Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 3,
+    "fields": {
+        "name": "Картофель",
+        "description": "Свежий картофель",
+        "image": "",
+        "category": 2,
+        "purchase_price": "40.00",
+        "created_at": "2026-03-16T12:00:00Z",
+        "updated_at": "2026-03-16T12:00:00Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 4,
+    "fields": {
+        "name": "Рис",
+        "description": "Длиннозёрный рис",
+        "image": "",
+        "category": 3,
+        "purchase_price": "65.30",
+        "created_at": "2026-03-16T12:00:00Z",
+        "updated_at": "2026-03-16T12:00:00Z"
+    }
+}
+]
