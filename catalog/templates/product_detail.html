@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+  <h1 class="display-4">{{ product.name }}</h1>
+  <p class="lead">{{ product.description }}</p>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6">
+      {% if product.image %}
+      <img src="{{ product.image.url }}" class="img-fluid rounded" alt="{{ product.name }}">
+      {% else %}
+      <img src="{% static 'img/no-image.png' %}" class="img-fluid rounded" alt="No image">
+      {% endif %}
+    </div>
+    <div class="col-lg-6">
+      <div class="card mb-4 box-shadow">
+        <div class="card-body">
+          <h4>Цена: {{ product.purchase_price }} ₽</h4>
+          <p><strong>Категория:</strong> {{ product.category.name }}</p>
+          <p><strong>Дата создания:</strong> {{ product.created_at|date:"d M Y" }}</p>
+          <p><strong>Последнее изменение:</strong> {{ product.updated_at|date:"d M Y H:i" }}</p>
+          <a href="{% url 'catalog:home' %}" class="btn btn-outline-secondary">← Назад к каталогу</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
