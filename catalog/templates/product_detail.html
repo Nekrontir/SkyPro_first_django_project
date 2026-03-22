@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+  <h1 class="display-4">{{ product.name }}</h1>
+  <p class="lead">{{ product.description }}</p>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6">
+      {% if product.image %}
+      <img src="{{ product.image.url }}" class="img-fluid rounded" alt="{{ product.name }}">
+      {% else %}
+      <!-- Встроенная SVG-заглушка -->
+      <svg width="100%" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" style="background:#f8f9fa; border:1px dashed #ccc; display:flex; align-items:center; justify-content:center;">
+        <text x="50%" y="50%" text-anchor="middle" font-size="18" fill="#6c757d">Нет изображения</text>
+      </svg>
+      {% endif %}
+    </div>
+    <div class="col-lg-6">
+      <div class="card mb-4 box-shadow">
+        <div class="card-body">
+          <h4>Цена: {{ product.purchase_price }} ₽</h4>
+          <p><strong>Категория:</strong> {{ product.category.name }}</p>
+          <p><strong>Дата создания:</strong> {{ product.created_at|date:"d M Y" }}</p>
+          <p><strong>Последнее изменение:</strong> {{ product.updated_at|date:"d M Y H:i" }}</p>
+          <a href="{% url 'catalog:home' %}" class="btn btn-outline-secondary">← Назад к каталогу</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
