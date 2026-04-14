@@ -1,6 +1,7 @@
-from django.shortcuts import render
-from django.views.generic import DetailView, ListView, TemplateView
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, DeleteView, DetailView, ListView, TemplateView, UpdateView
 
+from .forms import ProductForm
 from .models import Product
 
 
@@ -24,3 +25,23 @@ class ContactsView(TemplateView):
     """Контроллер для страницы контактов"""
 
     template_name = "contacts.html"
+
+
+class ProductCreateView(CreateView):
+    model = Product
+    form_class = ProductForm
+    template_name = "product_form.html"
+    success_url = reverse_lazy("catalog:home")
+
+
+class ProductUpdateView(UpdateView):
+    model = Product
+    form_class = ProductForm
+    template_name = "product_form.html"
+    success_url = reverse_lazy("catalog:home")
+
+
+class ProductDeleteView(DeleteView):
+    model = Product
+    template_name = "product_confirm_delete.html"
+    success_url = reverse_lazy("catalog:home")
