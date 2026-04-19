@@ -30,15 +30,13 @@
         </div>
         <div class="mt-3">
           {% if user == product.owner %}
-          <div class="mt-3">
-            <a href="{% url 'catalog:product_update' product.pk %}" class="btn btn-warning">Редактировать</a>
-            <a href="{% url 'catalog:product_delete' product.pk %}" class="btn btn-danger">Удалить</a>
-          </div>
+          <a href="{% url 'catalog:product_update' product.pk %}" class="btn btn-warning">Редактировать</a>
+          <a href="{% url 'catalog:product_delete' product.pk %}" class="btn btn-danger">Удалить</a>
+          {% elif perms.catalog.delete_product %}
+          <a href="{% url 'catalog:product_delete' product.pk %}" class="btn btn-danger">Удалить</a>
           {% endif %}
           {% if perms.catalog.can_unpublish_product and product.is_published %}
-          <div class="mt-3">
-            <a href="{% url 'catalog:product_unpublish' product.pk %}" class="btn btn-secondary">Снять с публикации</a>
-          </div>
+          <a href="{% url 'catalog:product_unpublish' product.pk %}" class="btn btn-secondary">Снять с публикации</a>
           {% endif %}
         </div>
       </div>
