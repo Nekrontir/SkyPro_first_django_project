@@ -5,7 +5,8 @@ from django.views.generic import CreateView, DeleteView, DetailView, ListView, T
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 from .forms import ProductForm
-from .models import Product
+from .models import Product, Category
+from .services import get_products_by_category
 
 
 class ProductListView(ListView):
@@ -68,3 +69,20 @@ def unpublish_product(request, pk):
     product.is_published = False
     product.save()
     return redirect('catalog:product_detail', pk=pk)
+
+
+class CategoryProductListView(ListView):
+    """Список продуктов конкретной категории."""
+    template_name = "category_products.html"
+    context_object_name = "products"
+
+    def get_queryset(self):
+        category_id = self.kwargs.get("category_id")
+        # Сохраняем категорию, чтобы использовать в контексте
+        self.category = get_object_or_404(Category, pk=category_id)
+        return get_products_by_category(category_id)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["category"] = self.category
+        return context
